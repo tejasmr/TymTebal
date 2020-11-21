@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
+
+let persistenceContainer = PersistenceController.shared
 
 @main
 struct TymTebalApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(envObj: EnvObj())
         }
+    }
+}
+struct TymTebalApp_Preview: PreviewProvider {
+    static var previews: some View {
+        ContentView(envObj: EnvObj())
     }
 }

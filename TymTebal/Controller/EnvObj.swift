@@ -10,7 +10,7 @@ import CoreData
 
 class EnvObj: ObservableObject {
     
-    @Environment(\.managedObjectContext) var viewContext
+    let viewContext = PersistenceController.shared.container.viewContext
     
     @FetchRequest(sortDescriptors: [])
     var timeTableItems: FetchedResults<TimeTableItem>
@@ -22,31 +22,46 @@ class EnvObj: ObservableObject {
     init() {
         self.editingItem = TimeTableCodeItem()
         self.items = []
+        
+        
         timeTableItems.forEach { item in
             self.items.append(TimeTableCodeItem(day: item.day ?? "Mon", time: item.time ?? "8:00", title: item.title ?? "Untitled", content: item.content ?? ""))
         }
     }
     
     func addItem() {
-        //        let newItem = TimeTableItem(context: viewContext)
-        //        newItem.day = "Mon"
-        //        newItem.time = "8:00"
-        //        newItem.title = "Untitled"
-        //        newItem.content = ""
-        //
-        //        self.items.append(TimeTableCodeItem(day: "Mon", time: "8:00", title: "Untitled", content: ""))
-        //
-        //        saveContext()
+        withAnimation {
+            
+            let newItem = TimeTableItem(context: viewContext)
+            newItem.day = "Mon"
+            newItem.time = "8:00"
+            newItem.title = "Untitled"
+            newItem.content = ""
+            
         
-        print("Done")
+            do {
+                try viewContext.save()
+                print("It happened")
+            } catch {
+                let error = error as NSError
+                fatalError("Unresolved Error: \(error)")
+            }
+            
+            self.items.append(TimeTableCodeItem())
+            
+        }
     }
     
     func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            let error = error as NSError
-            fatalError("Unresolved Error: \(error)")
+        let viewContext = persistenceContainer.container.viewContext
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                let error = error as NSError
+                fatalError("Unresolved Error: \(error)")
+            }
         }
     }
     
@@ -56,18 +71,18 @@ class EnvObj: ObservableObject {
                 timeTableItems[$0]
             }
             .forEach(viewContext.delete)
-            
+
             saveContext()
         }
     }
-    
-    func updateItem(_ item: FetchedResults<TimeTableItem>.Element) {
-        withAnimation {
-            item.day = editingItem.day
-            item.time = editingItem.time
-            item.title = editingItem.title
-            item.content = editingItem.content
-            saveContext()
-        }
-    }
+    //
+    //    func updateItem(_ item: FetchedResults<TimeTableItem>.Element) {
+    //        withAnimation {
+    //            item.day = editingItem.day
+    //            item.time = editingItem.time
+    //            item.title = editingItem.title
+    //            item.content = editingItem.content
+    //            saveContext()
+    //        }
+    //    }
 }

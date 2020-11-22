@@ -8,18 +8,27 @@
 import SwiftUI
 import CoreData
 
-let persistenceContainer = PersistenceController.shared
 
 @main
 struct TymTebalApp: App {
+    
+    let persistenceContainer = PersistenceController.shared
+    
+    @FetchRequest(sortDescriptors: [])
+    var timeTableItems: FetchedResults<TimeTableItem>
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(envObj: EnvObj())
+            ContentView()
+                .environmentObject(EnvObj())
+                .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
         }
     }
 }
 struct TymTebalApp_Preview: PreviewProvider {
     static var previews: some View {
-        ContentView(envObj: EnvObj())
+        ContentView()
+            .environmentObject(EnvObj())
+            .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
     }
 }

@@ -15,6 +15,11 @@
 		7B4DAADC25690CE3008D7199 /* EnvObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DAADB25690CE3008D7199 /* EnvObj.swift */; };
 		7B4DAAE025692DAE008D7199 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DAADE25692DAE008D7199 /* Model.xcdatamodeld */; };
 		7B4DAAE425692EBB008D7199 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DAAE325692EBB008D7199 /* PersistenceController.swift */; };
+		7B55E637256A244400F87471 /* AddNewNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55E636256A244400F87471 /* AddNewNote.swift */; };
+		7B55E643256A35E200F87471 /* DaysMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55E642256A35E200F87471 /* DaysMenu.swift */; };
+		7B55E646256A387100F87471 /* CornerRadiusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55E645256A387100F87471 /* CornerRadiusExtension.swift */; };
+		7B55E649256A38F700F87471 /* SmallRoundedRectangleThingy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55E648256A38F700F87471 /* SmallRoundedRectangleThingy.swift */; };
+		7B55E66D256A652800F87471 /* TimeTableItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B55E66C256A652800F87471 /* TimeTableItemContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		7B4DAADB25690CE3008D7199 /* EnvObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvObj.swift; sourceTree = "<group>"; };
 		7B4DAADF25692DAE008D7199 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7B4DAAE325692EBB008D7199 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		7B55E636256A244400F87471 /* AddNewNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNote.swift; sourceTree = "<group>"; };
+		7B55E642256A35E200F87471 /* DaysMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysMenu.swift; sourceTree = "<group>"; };
+		7B55E645256A387100F87471 /* CornerRadiusExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadiusExtension.swift; sourceTree = "<group>"; };
+		7B55E648256A38F700F87471 /* SmallRoundedRectangleThingy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallRoundedRectangleThingy.swift; sourceTree = "<group>"; };
+		7B55E66C256A652800F87471 /* TimeTableItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableItemContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +70,19 @@
 		7B4DAAC52568E453008D7199 /* TymTebal */ = {
 			isa = PBXGroup;
 			children = (
+				7B4DAAF025694BF0008D7199 /* Model */,
 				7B4DAAE225692EA2008D7199 /* Controller */,
 				7B4DAAC62568E453008D7199 /* TymTebalApp.swift */,
 				7B4DAAD62568F117008D7199 /* TimeTableForDay.swift */,
+				7B55E645256A387100F87471 /* CornerRadiusExtension.swift */,
 				7B4DAAC82568E453008D7199 /* ContentView.swift */,
+				7B55E648256A38F700F87471 /* SmallRoundedRectangleThingy.swift */,
 				7B4DAACA2568E457008D7199 /* Assets.xcassets */,
 				7B4DAACF2568E457008D7199 /* Info.plist */,
 				7B4DAACC2568E457008D7199 /* Preview Content */,
-				7B4DAADE25692DAE008D7199 /* Model.xcdatamodeld */,
+				7B55E636256A244400F87471 /* AddNewNote.swift */,
+				7B55E642256A35E200F87471 /* DaysMenu.swift */,
+				7B55E66C256A652800F87471 /* TimeTableItemContent.swift */,
 			);
 			path = TymTebal;
 			sourceTree = "<group>";
@@ -87,6 +102,14 @@
 				7B4DAADB25690CE3008D7199 /* EnvObj.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7B4DAAF025694BF0008D7199 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B4DAADE25692DAE008D7199 /* Model.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,11 +182,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B4DAAC92568E453008D7199 /* ContentView.swift in Sources */,
+				7B55E637256A244400F87471 /* AddNewNote.swift in Sources */,
+				7B55E66D256A652800F87471 /* TimeTableItemContent.swift in Sources */,
+				7B55E649256A38F700F87471 /* SmallRoundedRectangleThingy.swift in Sources */,
 				7B4DAAC72568E453008D7199 /* TymTebalApp.swift in Sources */,
 				7B4DAAE025692DAE008D7199 /* Model.xcdatamodeld in Sources */,
 				7B4DAAE425692EBB008D7199 /* PersistenceController.swift in Sources */,
 				7B4DAAD72568F117008D7199 /* TimeTableForDay.swift in Sources */,
 				7B4DAADC25690CE3008D7199 /* EnvObj.swift in Sources */,
+				7B55E643256A35E200F87471 /* DaysMenu.swift in Sources */,
+				7B55E646256A387100F87471 /* CornerRadiusExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

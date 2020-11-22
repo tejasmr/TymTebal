@@ -8,63 +8,70 @@
 import SwiftUI
 import CoreData
 
+let persistenceContainer = PersistenceController.shared
+
 struct ContentView: View {
     
-    @ObservedObject var envObj: EnvObj
+    @Environment(\.managedObjectContext) var viewContext
     
-    var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        
+    @EnvironmentObject var envObj: EnvObj
     
     @State var selected: String = "Mon"
     
-    var gridItemLayout = [GridItem(.adaptive(minimum: UIScreen.main.bounds.width / 8 - 10, maximum: UIScreen.main.bounds.width / 8)), GridItem(.adaptive(minimum: UIScreen.main.bounds.width / 8 - 10, maximum: UIScreen.main.bounds.width / 8))]
-    
+    @State var showingAddNewNote: Bool = false
     
     var body: some View {
-        ZStack {
-            VStack {
-                HStack(spacing: 9) {
-                    ForEach(days, id: \.self) { day in
-                        Button(action: {
-                            selected = day
-                        }) {
-                            VStack(spacing: 0) {
-                                Text(day)
-                                    .frame(width: UIScreen.main.bounds.width / 9)
-                                    .foregroundColor(day == selected ? Color.blue : Color.black)
-                                
-                                if(day == selected) {
-                                    Rectangle()
-                                        .frame(width: UIScreen.main.bounds.width / 18, height: 2.0)
-                                }
+        NavigationView {
+            ZStack {
+                VStack {
+                    DaysMenu(color: Color.blue, selected: $selected)
+                    
+                    Spacer()
+                    TimeTableForDay(day: $selected)
+                    Spacer()
+                }
+                
+                ZStack {
+                    VStack {
+                        Spacer()
+                        AddNewNote(showingAddNewNote: $showingAddNewNote)
+                            .rotation3DEffect(
+                                Angle.degrees(self.showingAddNewNote ? 0 : 180),
+                                axis: (x: 1, y: 0, z: 1)
+                            )
+                            .animation(Animation.default)
+                            .offset(x: CGFloat(0.0), y: self.showingAddNewNote ? CGFloat(0.0) : CGFloat(UIScreen.main.bounds.size.height))
+                            
+                    }
+                    if (!self.showingAddNewNote) {
+                        VStack {
+                            Spacer()
+                            Button(action: {
+                                self.showingAddNewNote.toggle()
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .foregroundColor(Color.black)
+                                    .background(Color.white)
+                                    .clipShape(Circle())
+                                    .frame(width: 50, height: 50, alignment: .center)
+                                    .padding(.bottom, 5)
                             }
                         }
                     }
                 }
-                Spacer()
-                TimeTableForDay(envObj: envObj, day: $selected)
-                Spacer()
-            }
-            
-            VStack {
-                Spacer()
-                Button(action: {
-                    print("Done")
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .foregroundColor(Color.black)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .frame(width: 50, height: 50, alignment: .center)
-                        .padding(.bottom, 5)
-                }
-            }
+            }.navigationBarHidden(true)
         }
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(envObj: EnvObj())
+        ContentView()
+            .environmentObject(EnvObj())
+            .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
     }
 }

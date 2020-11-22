@@ -100,7 +100,7 @@ struct AddNewNote: View {
                         if min == "" {
                             min = "00"
                         }
-                        if stringToInt(hour) <= 9 && min.count < 2{
+                        if stringToInt(hour) <= 9 && hour.count < 2{
                             hour = "0" + hour
                         }
                         if title == "" {

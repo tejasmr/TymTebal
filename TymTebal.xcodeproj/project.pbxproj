@@ -51,6 +51,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B097FC7256FBA3100A55AF5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B55E636256A244400F87471 /* AddNewNote.swift */,
+				7B55E642256A35E200F87471 /* DaysMenu.swift */,
+				7B4DAAD62568F117008D7199 /* TimeTableForDay.swift */,
+				7B55E66C256A652800F87471 /* TimeTableItemContent.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7B097FC8256FBA6E00A55AF5 /* Helper Code */ = {
+			isa = PBXGroup;
+			children = (
+				7B55E648256A38F700F87471 /* SmallRoundedRectangleThingy.swift */,
+				7B55E645256A387100F87471 /* CornerRadiusExtension.swift */,
+			);
+			path = "Helper Code";
+			sourceTree = "<group>";
+		};
 		7B4DAABA2568E453008D7199 = {
 			isa = PBXGroup;
 			children = (
@@ -70,19 +90,15 @@
 		7B4DAAC52568E453008D7199 /* TymTebal */ = {
 			isa = PBXGroup;
 			children = (
+				7B097FC8256FBA6E00A55AF5 /* Helper Code */,
+				7B097FC7256FBA3100A55AF5 /* Views */,
 				7B4DAAF025694BF0008D7199 /* Model */,
 				7B4DAAE225692EA2008D7199 /* Controller */,
 				7B4DAAC62568E453008D7199 /* TymTebalApp.swift */,
-				7B4DAAD62568F117008D7199 /* TimeTableForDay.swift */,
-				7B55E645256A387100F87471 /* CornerRadiusExtension.swift */,
 				7B4DAAC82568E453008D7199 /* ContentView.swift */,
-				7B55E648256A38F700F87471 /* SmallRoundedRectangleThingy.swift */,
 				7B4DAACA2568E457008D7199 /* Assets.xcassets */,
 				7B4DAACF2568E457008D7199 /* Info.plist */,
 				7B4DAACC2568E457008D7199 /* Preview Content */,
-				7B55E636256A244400F87471 /* AddNewNote.swift */,
-				7B55E642256A35E200F87471 /* DaysMenu.swift */,
-				7B55E66C256A652800F87471 /* TimeTableItemContent.swift */,
 			);
 			path = TymTebal;
 			sourceTree = "<group>";

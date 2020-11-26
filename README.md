@@ -15,3 +15,7 @@ Below is a video showcasing our app!
 Thank you!
 
 [![TymTebal](https://img.youtube.com/vi/HF90isNObIc/0.jpg)](https://www.youtube.com/watch?v=HF90isNObIc)
+
+Update:
+
+[22:35 26 Nov 2020] Added Notification Functionality while adding a reminder, updating a reminder and also deleting a reminder!

@@ -22,6 +22,15 @@ struct AddNewNote: View {
     @Environment(\.managedObjectContext) var viewContext
     
     var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    var daysDict = [
+        "Sun" : 1,
+        "Mon" : 2,
+        "Tue" : 3,
+        "Wed" : 4,
+        "Thu" : 5,
+        "Fri" : 6,
+        "Sat" : 7
+    ]
     
     var body: some View {
         VStack {
@@ -185,5 +194,33 @@ struct AddNewNote: View {
         }
     }
     
+    func setNotification(day: String, time: String, title: String, content: String) {
+        
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = title
+        notificationContent.body = content
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        
+        dateComponents.weekday = daysDict[day]
+        
+        let timeArr = time.split { $0 == ":" }
+        dateComponents.hour = stringToInt(String(timeArr[0]))
+        dateComponents.minute = stringToInt(String(timeArr[1]))
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: notificationContent, trigger: trigger)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        notificationCenter.add(request) { (error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "No error")
+            }
+        }
+    }
 }
 

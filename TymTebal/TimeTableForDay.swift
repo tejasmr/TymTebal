@@ -42,6 +42,8 @@ struct TimeTableForDay: View {
                         }
                     }
                 }
+                
+                
             }.onDelete(perform: deleteItem)
         }
     }

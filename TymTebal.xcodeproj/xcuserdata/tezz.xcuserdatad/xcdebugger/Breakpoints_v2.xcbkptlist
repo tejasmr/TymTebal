@@ -20,5 +20,53 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17D2AE83-8D37-42FD-AB20-E5FFE65EAD04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TymTebal/Views/AddNewNote.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "addItem(day:time:title:content:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "17D2AE83-8D37-42FD-AB20-E5FFE65EAD04 - dd9bffebf6759f7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TymTebal.AddNewNote.addItem(day: Swift.String, time: Swift.String, title: Swift.String, content: Swift.String) -&gt; ()"
+                  moduleName = "TymTebal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tezz/Documents/TymTebal/TymTebal/Views/AddNewNote.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "1030">
+               </Location>
+               <Location
+                  uuid = "17D2AE83-8D37-42FD-AB20-E5FFE65EAD04 - 4f49d9594aa9bd3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in TymTebal.AddNewNote.addItem(day: Swift.String, time: Swift.String, title: Swift.String, content: Swift.String) -&gt; ()"
+                  moduleName = "TymTebal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tezz/Documents/TymTebal/TymTebal/Views/AddNewNote.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import UserNotifications
 
 struct AddNewNote: View {
     
@@ -175,11 +176,13 @@ struct AddNewNote: View {
         withAnimation {
             
             let newItem = TimeTableItem(context: viewContext)
+            newItem.uuid = UUID()
             newItem.day = day
             newItem.time = time
             newItem.title = title
             newItem.content = content
             
+            setNotification(uuid: newItem.uuid ?? UUID(), day: day, time: time, title: title, content: content)
             
             saveContext()
         }
@@ -194,7 +197,17 @@ struct AddNewNote: View {
         }
     }
     
-    func setNotification(day: String, time: String, title: String, content: String) {
+    func setNotification(uuid: UUID, day: String, time: String, title: String, content: String) {
+        
+        let center = UNUserNotificationCenter.current()
+                
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
         
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
@@ -208,15 +221,16 @@ struct AddNewNote: View {
         let timeArr = time.split { $0 == ":" }
         dateComponents.hour = stringToInt(String(timeArr[0]))
         dateComponents.minute = stringToInt(String(timeArr[1]))
+        print(dateComponents)
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
-        let uuidString = UUID().uuidString
+        let uuidString = uuid.uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: notificationContent, trigger: trigger)
         
-        let notificationCenter = UNUserNotificationCenter.current()
         
-        notificationCenter.add(request) { (error) in
+        
+        center.add(request) { (error) in
             if error != nil {
                 print(error?.localizedDescription ?? "No error")
             }

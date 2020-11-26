@@ -5,8 +5,9 @@
         <attribute name="day" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="TimeTableItem" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="TimeTableItem" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

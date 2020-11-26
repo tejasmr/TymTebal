@@ -14,6 +14,15 @@ struct TimeTableItemContent: View {
     @State var hour: String
     @State var min: String
     
+    var daysDict = [
+        "Sun" : 1,
+        "Mon" : 2,
+        "Tue" : 3,
+        "Wed" : 4,
+        "Thu" : 5,
+        "Fri" : 6,
+        "Sat" : 7
+    ]
     
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.presentationMode) var presentation
@@ -120,10 +129,55 @@ struct TimeTableItemContent: View {
     
     func updateItem(_ item: FetchedResults<TimeTableItem>.Element) {
         withAnimation {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [(item.uuid ?? UUID()).uuidString])
+
             item.title = title
             item.time = hour + ":" + min
             item.day = selected
+            
+            setNotification(uuid: item.uuid ?? UUID(), day: item.day ?? "Mon", time: item.time ?? "08:00", title: item.title ?? "Untitled", content: item.content ?? "")
+            
             saveContext()
+        }
+    }
+    
+    func setNotification(uuid: UUID, day: String, time: String, title: String, content: String) {
+        
+        let center = UNUserNotificationCenter.current()
+                
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = title
+        notificationContent.body = content
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        
+        dateComponents.weekday = daysDict[day]
+        
+        let timeArr = time.split { $0 == ":" }
+        dateComponents.hour = stringToInt(String(timeArr[0]))
+        dateComponents.minute = stringToInt(String(timeArr[1]))
+        print(dateComponents)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let uuidString = uuid.uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: notificationContent, trigger: trigger)
+        
+        
+        
+        center.add(request) { (error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "No error")
+            }
         }
     }
 }

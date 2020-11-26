@@ -59,17 +59,23 @@ struct TimeTableForDay: View {
     
     func deleteItem(offsets: IndexSet) {
         withAnimation {
+            
+            offsets.forEach {
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [(timeTableItems[$0].uuid ?? UUID()).uuidString])
+            }
             offsets.map {
                 timeTableItems[$0]
             }
             .forEach(viewContext.delete)
 
+            
             saveContext()
         }
     }
 }
 
 struct TimeTableCodeItem: Hashable {
+    var uuid: UUID = UUID()
     var day: String = "Mon"
     var time: String = "8:00"
     var title: String = "Untitled"
